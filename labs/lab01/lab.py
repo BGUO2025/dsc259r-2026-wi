@@ -5,7 +5,8 @@ from pathlib import Path
 import io
 import pandas as pd
 import numpy as np
-np.set_printoptions(legacy='1.21')
+
+np.set_printoptions(legacy="1.21")
 
 
 # ---------------------------------------------------------------------
@@ -14,15 +15,7 @@ np.set_printoptions(legacy='1.21')
 
 
 def consecutive_ints(ints):
-    if len(ints) == 0:
-        return False
-
-    for k in range(len(ints) - 1):
-        diff = abs(ints[k] - ints[k+1])
-        if diff == 1:
-            return True
-
-    return False
+    ...
 
 
 # ---------------------------------------------------------------------
@@ -69,6 +62,7 @@ def last_chars(fh):
 def add_root(A):
     ...
 
+
 def where_square(A):
     ...
 
@@ -98,6 +92,7 @@ def filter_cutoff_np(matrix, cutoff):
 
 def growth_rates(A):
     ...
+
 
 def with_leftover(A):
     ...
