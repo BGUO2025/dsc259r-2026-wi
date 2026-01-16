@@ -14,4 +14,9 @@ np.set_printoptions(legacy='1.21')
 
 
 def env_check():
-    ...
+    import pandas as pd
+    import otter 
+    import sklearn 
+    print(f'pandas: {pd.__version__}')
+    print(f'otter: {otter.__version__}')
+    print(f'scikit-learn: {sklearn.__version__}')
