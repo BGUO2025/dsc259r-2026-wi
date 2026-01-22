@@ -89,9 +89,40 @@ def population_stats(df):
 # QUESTION 3
 # ---------------------------------------------------------------------
 
+def concatenate_series(ser, max_length):
+    extra_entries = pd.Series([np.nan] * (max_length - len(ser)))
+    ser = (
+        pd.concat(
+            [ser, extra_entries],
+            ignore_index=True
+        )
+    )
+    return ser
 
 def most_common(df, N=10):
-    ...
+    # Extract columns name
+    original_columns = df.columns
+
+    # Iterate columns
+    for col in original_columns:
+        # Compute original frequency and its values
+        freq = df[col].value_counts()
+        most_freq_vals = pd.Series(freq.index)
+
+        # Extend freq/values to align with df shape
+        if freq.shape[0] < N: freq = concatenate_series(freq, N)
+        if len(most_freq_vals) < N: most_freq_vals = concatenate_series(most_freq_vals, N)
+
+        # Add that to df
+        df = (
+            df[df.index < N]
+            .assign(**{
+                col+'_values': most_freq_vals,
+                col+'_counts': freq
+            })            
+        )
+    df = df.drop(columns=original_columns)
+    return df
 
 
 # ---------------------------------------------------------------------
@@ -100,7 +131,48 @@ def most_common(df, N=10):
 
 
 def super_hero_powers(powers):
-    ...
+    ## The name of the superhero with the greatest number of superpowers
+    # Find num of power each hero has
+    num_powers = (
+        powers
+        .iloc[:, 1:]
+        .sum(axis=1)
+    )
+    # Find the index of the most powerful hero
+    greatest_power_index = (
+        np.argsort(num_powers)
+        .iloc[-1]
+    )
+    # Find the hero name based on the index
+    powerful_hero = (
+        powers
+        .loc[greatest_power_index, 'hero_names']
+    )
+
+    ## Identify the most common superpower among superheroes who can fly, other than 'Flight' itself
+    most_common_power = (
+        powers[powers['Flight'] == True]
+        .drop(columns='Flight')
+        .iloc[:, 1:]
+        .sum(axis=0)
+        .sort_values(ascending=False)
+        .index[0]
+    )
+
+    ## The name of the most common superpower among superheroes with only one superpower
+    most_common_one_power = (
+        powers[num_powers == 1]
+        .iloc[:, 1:]
+        .idxmax(axis=1)
+        .value_counts()
+        .index[0]
+    )
+
+    return [
+        powerful_hero, 
+        most_common_power, 
+        most_common_one_power
+    ]
 
 
 # ---------------------------------------------------------------------
@@ -109,7 +181,7 @@ def super_hero_powers(powers):
 
 
 def clean_heroes(heroes):
-    ...
+    return heroes.replace("-", np.nan).map(lambda x: np.nan if isinstance(x, float) and (x < 0) else x)
 
 
 # ---------------------------------------------------------------------
@@ -118,7 +190,14 @@ def clean_heroes(heroes):
 
 
 def super_hero_stats():
-    ...
+    return [
+        'Onslaught', 
+        'DC Comics', 
+        'bad', 
+        'Marvel Comics', 
+        'NBC - Heroes', 
+        'Groot'
+    ]
 
 
 # ---------------------------------------------------------------------
@@ -127,8 +206,126 @@ def super_hero_stats():
 
 
 def clean_universities(df):
-    ...
+    # Replace new line with ', ' for institution name
+    inst_with_new_line_mask = df['institution'].str.contains('\n')
+    df.loc[inst_with_new_line_mask, 'institution'] = (
+        df.loc[inst_with_new_line_mask, 'institution']
+        .str
+        .replace('\n', ', ')
+    )
+
+    # Change data type for 'broad impact'
+    df['broad_impact'] = df['broad_impact'].astype(np.int32)
+
+
+    # Split tuple from 'national_rank' into two part
+    df = df.assign(**{
+        'nation': df['national_rank']
+            .transform(lambda x: x.split(',')[0]),
+        'national_rank_cleaned': df['national_rank']
+            .transform(lambda x: x.split(',')[1])
+            .astype(np.int32)
+    })
+    df = df.drop(columns='national_rank')
+
+    # Replace some country names
+    df['nation'] = (
+        df['nation']
+        .replace(to_replace='Czechia', value='Czech Republic')
+        .replace(to_replace='USA', value='United States')
+        .replace(to_replace='UK', value='United Kingdom')
+    )
+
+    # Detect r1 public school
+    df = df.assign(**{
+        'is_r1_public': np.where(
+            (df['control'] == 'Public') & 
+            (df['city'].notna()) & 
+            (df['state'].notna()), 
+            True, 
+            False)
+    })
+
+    return df
 
 def university_info(cleaned):
-    ...
+    # Prompt 1: State's with >= 3 inst, States has lowest mean score
+    over_3_inst = (
+        cleaned
+        .groupby(by='state')
+        ['state']
+        .filter(lambda x: len(x) >= 3)
+        .unique()
+    )
+    min_state = (
+        cleaned[cleaned['state'].isin(over_3_inst)]
+        .groupby(by='state')
+        ['score']
+        .aggregate(['mean'])
+        .idxmin()
+        .item()
+    )
 
+    # Prompt 2: Base is School within Rank 100, find proportion of school with Quality of Faculty within 100
+    rank100 = cleaned[cleaned['world_rank'] <= 100].shape[0]
+    quality100 = cleaned[cleaned['world_rank'] <= 100][cleaned['quality_of_faculty'] <= 100]['quality_of_faculty'].shape[0]
+    proportion100 = quality100 / rank100
+
+    # Prompt 3: Find states with over 50% of private schools
+    all_shool_counts = (
+        cleaned
+        .groupby('state')
+        ['control']
+        .aggregate(['size'])
+        .sort_values(by='state')
+        ['size']
+    )
+    all_school_states = all_shool_counts.index
+
+    private_school_counts = (
+        cleaned[cleaned['control'] != 'Public']
+        .groupby('state')
+        ['control']
+        .aggregate(['size'])
+    )
+    # States without private would not appear here, for later division to be successful
+    # I need to populate state with 0 private schools
+    non_private_states = set(all_school_states) - set(private_school_counts.index)
+    extra_private_school_counts = pd.DataFrame(
+        {'size': [0] * len(non_private_states)}, 
+        index=list(non_private_states)
+    )
+    private_school_counts = (
+        pd.concat([private_school_counts, extra_private_school_counts])
+        .sort_index()
+        ['size']
+    )
+    num_states_over_50_percent = (
+        private_school_counts[
+            (private_school_counts / all_shool_counts) >= 0.5
+        ]
+        .index.shape[0]
+    )
+
+    # Prompt 4: For the best inst in each country, find the lowest rank in the world
+    best_inst_per_nation = (
+        cleaned.groupby(by='nation')
+        ['national_rank_cleaned']
+        .idxmin()
+        .values
+    )
+
+    lowest_rank_best_inst_nation = (
+        cleaned
+        .iloc[best_inst_per_nation, :]
+        .sort_values(by='world_rank', ascending=False)
+        .iloc[0]
+        ['institution']
+    )
+
+    return [
+        min_state,
+        proportion100,
+        num_states_over_50_percent,
+        lowest_rank_best_inst_nation
+    ]
