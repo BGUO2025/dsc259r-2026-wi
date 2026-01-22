@@ -7517,7 +7517,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lec_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">course_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">lec15_util</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">util</span>
 </pre></div>
 </div>
@@ -10878,7 +10878,7 @@ $$\mathbb{E}[y_{\text{new}} - H(x_{\text{new}})]^2 = \text{model bias}^2 + \text
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=deec5020">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=deec5020">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10889,112 +10889,6 @@ $$\mathbb{E}[y_{\text{new}} - H(x_{\text{new}})]^2 = \text{model bias}^2 + \text
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Read the documentation!</span>
 train_test_split<span class="o">?</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-fg">Signature:</span>
-train_test_split<span class="ansi-blue-fg">(</span>
-    <span class="ansi-blue-fg">*</span>arrays<span class="ansi-blue-fg">,</span>
-    test_size<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    train_size<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    random_state<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    shuffle<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span>
-    stratify<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>
-Split arrays or matrices into random train and test subsets.
-
-Quick utility that wraps input validation,
-``next(ShuffleSplit().split(X, y))``, and application to input data
-into a single call for splitting (and optionally subsampling) data into a
-one-liner.
-
-Read more in the :ref:`User Guide &lt;cross_validation&gt;`.
-
-Parameters
-----------
-*arrays : sequence of indexables with same length / shape[0]
-    Allowed inputs are lists, numpy arrays, scipy-sparse
-    matrices or pandas dataframes.
-
-test_size : float or int, default=None
-    If float, should be between 0.0 and 1.0 and represent the proportion
-    of the dataset to include in the test split. If int, represents the
-    absolute number of test samples. If None, the value is set to the
-    complement of the train size. If ``train_size`` is also None, it will
-    be set to 0.25.
-
-train_size : float or int, default=None
-    If float, should be between 0.0 and 1.0 and represent the
-    proportion of the dataset to include in the train split. If
-    int, represents the absolute number of train samples. If None,
-    the value is automatically set to the complement of the test size.
-
-random_state : int, RandomState instance or None, default=None
-    Controls the shuffling applied to the data before applying the split.
-    Pass an int for reproducible output across multiple function calls.
-    See :term:`Glossary &lt;random_state&gt;`.
-
-shuffle : bool, default=True
-    Whether or not to shuffle the data before splitting. If shuffle=False
-    then stratify must be None.
-
-stratify : array-like, default=None
-    If not None, data is split in a stratified fashion, using this as
-    the class labels.
-    Read more in the :ref:`User Guide &lt;stratification&gt;`.
-
-Returns
--------
-splitting : list, length=2 * len(arrays)
-    List containing train-test split of inputs.
-
-    .. versionadded:: 0.16
-        If the input is sparse, the output will be a
-        ``scipy.sparse.csr_matrix``. Else, output type is the same as the
-        input type.
-
-Examples
---------
-&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; from sklearn.model_selection import train_test_split
-&gt;&gt;&gt; X, y = np.arange(10).reshape((5, 2)), range(5)
-&gt;&gt;&gt; X
-array([[0, 1],
-       [2, 3],
-       [4, 5],
-       [6, 7],
-       [8, 9]])
-&gt;&gt;&gt; list(y)
-[0, 1, 2, 3, 4]
-
-&gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(
-...     X, y, test_size=0.33, random_state=42)
-...
-&gt;&gt;&gt; X_train
-array([[4, 5],
-       [0, 1],
-       [6, 7]])
-&gt;&gt;&gt; y_train
-[2, 0, 3]
-&gt;&gt;&gt; X_test
-array([[2, 3],
-       [8, 9]])
-&gt;&gt;&gt; y_test
-[1, 4]
-
-&gt;&gt;&gt; train_test_split(y, shuffle=False)
-[[0, 1, 2], [3, 4]]
-<span class="ansi-red-fg">File:</span>      ~/repos/dsc80/dsc259r/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py
-<span class="ansi-red-fg">Type:</span>      function</pre>
 </div>
 </div>
 </div>

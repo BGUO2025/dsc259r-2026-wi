@@ -7517,7 +7517,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lec_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">course_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
@@ -7578,12 +7578,12 @@ a.anchor-link {
 <h3 id="Additional-resources">Additional resources<a class="anchor-link" href="#Additional-resources">¶</a></h3><p>These recent lectures have been quite conceptual! Here are a few other resources:</p>
 <ul>
 <li>Permutation testing:<ul>
-<li>Extra lecture notebook: <a href="https://dsc-courses.github.io/dsc80-2024-fa/resources/lectures/lec07/lec07-fast-permutation-tests.html">Fast Permutation Tests</a>.</li>
+<li>Extra lecture notebook: Fast Permutation Tests (see the resources page).</li>
 <li><a href="https://www.jwilber.me/permutationtest/">Great visualization from Jared Wilber</a>.</li>
 </ul>
 </li>
 <li>Missingness mechanisms:<ul>
-<li><a href="https://notes.dsc80.com/content/06/defining-missing.html">(Old) Course notes</a>.</li>
+<li>(Old) course notes (see the resources page).</li>
 <li><a href="https://en.wikipedia.org/wiki/Missing_data">Wikipedia</a>.</li>
 <li><a href="https://stefvanbuuren.name/fimd/sec-MCAR.html">This textbook page</a>.</li>
 <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4121561/">This journal article</a>.</li>
@@ -8538,7 +8538,7 @@ $$\text{P}(\text{data is present} \: | \: Y_{obs}, Y_{mis})$$<p>cannot be simpli
     
     <span class="c1"># Shuffling genders. </span>
     <span class="c1"># Note that we are assigning back to the same DataFrame for performance reasons; </span>
-    <span class="c1"># see https://dsc-courses.github.io/dsc80-2024-fa/resources/lectures/lec07/lec07-fast-permutation-tests.html</span>
+    <span class="c1"># see the resources page for the extra lecture notebook</span>
     <span class="n">shuffled</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">shuffled</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">])</span>
     
     <span class="c1"># Computing and storing the TVD.</span>

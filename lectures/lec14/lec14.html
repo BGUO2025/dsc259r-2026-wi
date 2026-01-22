@@ -7517,7 +7517,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lec_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">course_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
@@ -11853,16 +11853,6 @@ Name: total_bill, dtype: float64</pre>
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/Users/sam/repos/dsc80/dsc259r/.venv/lib/python3.12/site-packages/sklearn/base.py:486: UserWarning:
-
-X has feature names, but Binarizer was fitted without feature names
-
-</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
@@ -12077,7 +12067,7 @@ $$z(x_i) = \frac{x_i - \text{mean of } x}{\text{SD of } x}$$
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_raises-exception" id="cell-id=76b96342">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs celltag_raises-exception" id="cell-id=76b96342">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12087,57 +12077,6 @@ $$z(x_i) = \frac{x_i - \text{mean of } x}{\text{SD of } x}$$
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">stdscaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tips_quant</span><span class="p">)</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NotFittedError</span>                            Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[43], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">stdscaler</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">transform</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">tips_quant</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/repos/dsc80/dsc259r/.venv/lib/python3.12/site-packages/sklearn/utils/_set_output.py:316</span>, in <span class="ansi-cyan-fg">_wrap_method_output.&lt;locals&gt;.wrapped</span><span class="ansi-blue-fg">(self, X, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    314</span> <span style="color: rgb(175,0,255)">@wraps</span>(f)
-<span class="ansi-green-intense-fg ansi-bold">    315</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span style="color: rgb(0,0,255)">wrapped</span>(<span style="color: rgb(0,135,0)">self</span>, X, <span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs):
-<span class="ansi-green-fg">--&gt; 316</span>     data_to_wrap <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">X</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    317</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">isinstance</span>(data_to_wrap, <span style="color: rgb(0,135,0)">tuple</span>):
-<span class="ansi-green-intense-fg ansi-bold">    318</span>         <span style="color: rgb(95,135,135)"># only wrap the first output for cross decomposition</span>
-<span class="ansi-green-intense-fg ansi-bold">    319</span>         return_tuple <span style="color: rgb(98,98,98)">=</span> (
-<span class="ansi-green-intense-fg ansi-bold">    320</span>             _wrap_data_with_container(method, data_to_wrap[<span style="color: rgb(98,98,98)">0</span>], X, <span style="color: rgb(0,135,0)">self</span>),
-<span class="ansi-green-intense-fg ansi-bold">    321</span>             <span style="color: rgb(98,98,98)">*</span>data_to_wrap[<span style="color: rgb(98,98,98)">1</span>:],
-<span class="ansi-green-intense-fg ansi-bold">    322</span>         )
-
-File <span class="ansi-green-fg">~/repos/dsc80/dsc259r/.venv/lib/python3.12/site-packages/sklearn/preprocessing/_data.py:1042</span>, in <span class="ansi-cyan-fg">StandardScaler.transform</span><span class="ansi-blue-fg">(self, X, copy)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1027</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span style="color: rgb(0,0,255)">transform</span>(<span style="color: rgb(0,135,0)">self</span>, X, copy<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">None</span>):
-<span class="ansi-green-intense-fg ansi-bold">   1028</span> <span style="color: rgb(188,188,188)">    </span><span style="color: rgb(175,0,0)">"""Perform standardization by centering and scaling.</span>
-<span class="ansi-green-intense-fg ansi-bold">   1029</span> 
-<span class="ansi-green-intense-fg ansi-bold">   1030</span> <span style="color: rgb(175,0,0)">    Parameters</span>
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1040</span> <span style="color: rgb(175,0,0)">        Transformed array.</span>
-<span class="ansi-green-intense-fg ansi-bold">   1041</span> <span style="color: rgb(175,0,0)">    """</span>
-<span class="ansi-green-fg">-&gt; 1042</span>     <span class="ansi-yellow-bg">check_is_fitted</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1044</span>     copy <span style="color: rgb(98,98,98)">=</span> copy <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> copy <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>copy
-<span class="ansi-green-intense-fg ansi-bold">   1045</span>     X <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_validate_data(
-<span class="ansi-green-intense-fg ansi-bold">   1046</span>         X,
-<span class="ansi-green-intense-fg ansi-bold">   1047</span>         reset<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1052</span>         force_all_finite<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">allow-nan</span><span style="color: rgb(175,0,0)">"</span>,
-<span class="ansi-green-intense-fg ansi-bold">   1053</span>     )
-
-File <span class="ansi-green-fg">~/repos/dsc80/dsc259r/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:1661</span>, in <span class="ansi-cyan-fg">check_is_fitted</span><span class="ansi-blue-fg">(estimator, attributes, msg, all_or_any)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1658</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(<span style="color: rgb(175,0,0)">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">%s</span><span style="color: rgb(175,0,0)"> is not an estimator instance.</span><span style="color: rgb(175,0,0)">"</span> <span style="color: rgb(98,98,98)">%</span> (estimator))
-<span class="ansi-green-intense-fg ansi-bold">   1660</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> _is_fitted(estimator, attributes, all_or_any):
-<span class="ansi-green-fg">-&gt; 1661</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> NotFittedError(msg <span style="color: rgb(98,98,98)">%</span> {<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">name</span><span style="color: rgb(175,0,0)">"</span>: <span style="color: rgb(0,135,0)">type</span>(estimator)<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,135)">__name__</span>})
-
-<span class="ansi-red-fg">NotFittedError</span>: This StandardScaler instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.</pre>
 </div>
 </div>
 </div>

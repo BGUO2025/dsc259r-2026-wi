@@ -7517,7 +7517,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lec_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">course_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
@@ -7607,14 +7607,6 @@ a.anchor-link {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/Users/sam/repos/dsc80/private/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'datascience.ucsd.edu'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(
-</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
@@ -8270,7 +8262,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6ff4c7a7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6ff4c7a7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8280,111 +8272,6 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span>bs4.BeautifulSoup<span class="o">?</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-fg">Init signature:</span>
-bs4<span class="ansi-blue-fg">.</span>BeautifulSoup<span class="ansi-blue-fg">(</span>
-    markup<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">''</span><span class="ansi-blue-fg">,</span>
-    features<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    builder<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    parse_only<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    from_encoding<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    exclude_encodings<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    element_classes<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">,</span>
-<span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>     
-A data structure representing a parsed HTML or XML document.
-
-Most of the methods you'll call on a BeautifulSoup object are inherited from
-PageElement or Tag.
-
-Internally, this class defines the basic interface called by the
-tree builders when converting an HTML/XML document into a data
-structure. The interface abstracts away the differences between
-parsers. To write a new tree builder, you'll need to understand
-these methods as a whole.
-
-These methods will be called by the BeautifulSoup constructor:
-  * reset()
-  * feed(markup)
-
-The tree builder may call these methods from its feed() implementation:
-  * handle_starttag(name, attrs) # See note about return value
-  * handle_endtag(name)
-  * handle_data(data) # Appends to the current data node
-  * endData(containerClass) # Ends the current data node
-
-No matter how complicated the underlying parser is, you should be
-able to build a tree using 'start tag' events, 'end tag' events,
-'data' events, and "done with data" events.
-
-If you encounter an empty-element tag (aka a self-closing tag,
-like HTML's &lt;br&gt; tag), call handle_starttag and then
-handle_endtag.
-<span class="ansi-red-fg">Init docstring:</span>
-Constructor.
-
-:param markup: A string or a file-like object representing
- markup to be parsed.
-
-:param features: Desirable features of the parser to be
- used. This may be the name of a specific parser ("lxml",
- "lxml-xml", "html.parser", or "html5lib") or it may be the
- type of markup to be used ("html", "html5", "xml"). It's
- recommended that you name a specific parser, so that
- Beautiful Soup gives you the same results across platforms
- and virtual environments.
-
-:param builder: A TreeBuilder subclass to instantiate (or
- instance to use) instead of looking one up based on
- `features`. You only need to use this if you've implemented a
- custom TreeBuilder.
-
-:param parse_only: A SoupStrainer. Only parts of the document
- matching the SoupStrainer will be considered. This is useful
- when parsing part of a document that would otherwise be too
- large to fit into memory.
-
-:param from_encoding: A string indicating the encoding of the
- document to be parsed. Pass this in if Beautiful Soup is
- guessing wrongly about the document's encoding.
-
-:param exclude_encodings: A list of strings indicating
- encodings known to be wrong. Pass this in if you don't know
- the document's encoding but you know Beautiful Soup's guess is
- wrong.
-
-:param element_classes: A dictionary mapping BeautifulSoup
- classes like Tag and NavigableString, to other classes you'd
- like to be instantiated instead as the parse tree is
- built. This is useful for subclassing Tag or NavigableString
- to modify default behavior.
-
-:param kwargs: For backwards compatibility purposes, the
- constructor accepts certain keyword arguments used in
- Beautiful Soup 3. None of these arguments do anything in
- Beautiful Soup 4; they will result in a warning and then be
- ignored.
- 
- Apart from this, any keyword arguments passed into the
- BeautifulSoup constructor are propagated to the TreeBuilder
- constructor. This makes it possible to configure a
- TreeBuilder by passing in arguments, not just by saying which
- one to use.
-<span class="ansi-red-fg">File:</span>           ~/repos/dsc80/private/.venv/lib/python3.11/site-packages/bs4/__init__.py
-<span class="ansi-red-fg">Type:</span>           type
-<span class="ansi-red-fg">Subclasses:</span>     BeautifulStoneSoup
-</pre>
 </div>
 </div>
 </div>
@@ -10094,14 +9981,6 @@ li
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/Users/sam/repos/dsc80/private/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'datascience.ucsd.edu'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(
-</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[49]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">

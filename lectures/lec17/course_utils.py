@@ -1,29 +1,43 @@
 """
-Imports and helpful functions that we use in DSC 80 lectures. Use `make
-setup-lec` to copy this (and custom-rise-styles.css) to the lecture folders.
+Imports and helpful functions that we use in lectures. Use `make
+setup-lec` to copy this to the lecture folders.
 
 Usage:
 
-from dsc80_utils import *
+from course_utils import *
 """
 
+__all__ = [
+    "Path",
+    "pd",
+    "np",
+    "plt",
+    "sns",
+    "display",
+    "IFrame",
+    "HTML",
+    "plotly",
+    "px",
+    "pio",
+    "display_df",
+    "dfs_side_by_side",
+]
+
 from pathlib import Path
-import pandas as pd
-import numpy as np
+
 import matplotlib.pyplot as plt
-import seaborn as sns
-from matplotlib_inline.backend_inline import set_matplotlib_formats
-from IPython.display import display, IFrame, HTML
-
+import numpy as np
+import pandas as pd
 import plotly
-import plotly.figure_factory as ff
-import plotly.graph_objects as go
 import plotly.express as px
-from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 import plotly.io as pio
+import seaborn as sns
+from IPython.display import HTML, IFrame, display
+from matplotlib_inline.backend_inline import set_matplotlib_formats
 
-# DSC 80 preferred styles
-pio.templates["dsc80"] = go.layout.Template(
+# Course preferred styles
+pio.templates["dsc"] = go.layout.Template(
     layout=dict(
         margin=dict(l=30, r=30, t=30, b=30),
         autosize=True,
@@ -34,7 +48,7 @@ pio.templates["dsc80"] = go.layout.Template(
         title=dict(x=0.5, xanchor="center"),
     )
 )
-pio.templates.default = "simple_white+dsc80"
+pio.templates.default = "simple_white+dsc"
 
 set_matplotlib_formats("svg")
 sns.set_context("poster")
@@ -46,6 +60,10 @@ np.set_printoptions(threshold=20, precision=2, suppress=True)
 pd.set_option("display.max_rows", 7)
 pd.set_option("display.max_columns", 8)
 pd.set_option("display.precision", 2)
+
+# Suppress pandas_tutor syntax warnings
+# warnings.simplefilter(action="ignore", category=SyntaxWarning)
+# warnings.simplefilter(action="ignore", category=FutureWarning)
 
 # Use plotly as default plotting engine
 pd.options.plotting.backend = "plotly"
@@ -69,7 +87,7 @@ def dfs_side_by_side(*dfs):
         HTML(
             f"""
         <div style="display: flex; gap: 1rem;">
-        {''.join(df.to_html() for df in dfs)}
+        {"".join(df.to_html() for df in dfs)}
         </div>
     """
         )

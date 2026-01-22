@@ -8,7 +8,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LinearRegression
 
-from lec_utils import *
+from course_utils import *
 
 
 def fit_polys(train_sample, degs):
