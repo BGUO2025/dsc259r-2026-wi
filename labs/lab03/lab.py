@@ -262,7 +262,7 @@ def total_cost_per_city(owners, pets, procedure_history, procedure_detail):
     ophd_joined = pd.merge(
         left=oph_joined, 
         right=procedure_detail, 
-        how='inner',
+        how='left',
         on=['ProcedureType', 'ProcedureSubCode']
     )
 
@@ -288,7 +288,7 @@ def average_seller(sales):
     return (
         sales
         .groupby(by='Name')['Total']
-        .mean(skipna=True)
+        .mean()
         .to_frame(name='Average Sales')
     )
 
@@ -302,7 +302,36 @@ def product_name(sales):
     )
 
 def count_product(sales):
-    ...
+    return pd.pivot_table(
+        data=sales,
+        values='Total',
+        index=['Product', 'Name'],
+        columns='Date',
+        aggfunc='sum',
+        fill_value=0
+    )
 
 def total_by_month(sales):
-    pass
+    # Convert to datetime type
+    format = '%m.%d.%Y'
+    Date_datetime = pd.to_datetime(
+        arg=sales['Date'],
+        errors='raise',
+        dayfirst=False,
+        yearfirst=False,
+        utc=False,
+        format=format,
+        exact=True,
+    )
+
+    # Convert to month English name
+    sales = sales.assign(** {'Month': Date_datetime.dt.month_name()})
+
+    return pd.pivot_table(
+        data=sales,
+        values='Total',
+        index=['Name', 'Product'],
+        columns='Month',
+        aggfunc='sum',
+        fill_value=0
+    )

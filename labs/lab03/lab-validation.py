@@ -31,7 +31,7 @@ if len(invalid_ids) > 0:
 
 # Initialize Otter
 import otter
-grader = otter.Notebook("lab.ipynb")
+grader = otter.Notebook("lab_new.ipynb")
 
 # %load_ext autoreload
 # %autoreload 2
