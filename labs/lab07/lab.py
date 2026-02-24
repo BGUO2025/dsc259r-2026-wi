@@ -30,7 +30,7 @@ def match_1(string):
     >>> match_1("1b[#d] _")
     True
     """
-    pattern = ...
+    pattern = r"^..\[..\]"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -57,7 +57,7 @@ def match_2(string):
     >>> match_2("(858) 456-7890b")
     False
     """
-    pattern = ...
+    pattern = r"^\(858\)[ ]\d{3}\-\d{4}$"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -84,7 +84,7 @@ def match_3(string):
     >>> match_3(" adf!qe? ")
     False
     """
-    pattern = ...
+    pattern = r"^[a-zA-Z0-9? ]{5,9}\?$"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -113,7 +113,7 @@ def match_4(string):
     >>> match_4("$!@$")
     False
     """
-    pattern = ...
+    pattern = r"^\$[^abc$]*\$(a|A)+(b|B)+(c|C)+$"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -132,7 +132,7 @@ def match_5(string):
     >>> match_5("dsc259+.py")
     False
     """
-    pattern = ...
+    pattern = r"\w+\.py$"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -153,7 +153,7 @@ def match_6(string):
     >>> match_6("ABCDEF_ABCD")
     False
     """
-    pattern = ...
+    pattern = r"^[a-z]+\_[a-z]+$"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -172,12 +172,11 @@ def match_7(string):
     >>> match_7("_ncde")
     False
     """
-    pattern = ...
+    pattern = r"^\_.*\_$"
 
     # Do not edit following code
     prog = re.compile(pattern)
     return prog.search(string) is not None
-
 
 
 def match_8(string):
@@ -194,12 +193,11 @@ def match_8(string):
     >>> match_8("ASDJKL9380JKAL")
     True
     """
-    pattern = ...
+    pattern = r"^[^Oi1]+$"
 
     # Do not edit following code
     prog = re.compile(pattern)
     return prog.search(string) is not None
-
 
 
 def match_9(string):
@@ -218,7 +216,7 @@ def match_9(string):
     >>> match_9('TX-32-SAN-4491')
     False
     '''
-    pattern = ...
+    pattern = r"^NY-[0-9]{2}-[A-Z]{3}-[0-9]{4}$|^CA-[0-9]{2}-(SAN|LAX)-[0-9]{4}$"
 
     # Do not edit following code
     prog = re.compile(pattern)
@@ -240,7 +238,28 @@ def match_10(string):
     ['bde']
     
     '''
-    ...
+
+    # Lowercasing
+    string = string.lower()
+
+    # Remove non-alphanumeric and 'a' char
+    string = ''.join([
+        c
+        for c in string 
+        if (c.isalnum()) and (c != 'a')
+    ])
+
+    # Extract 3 non-overlapping non-repeating substring
+    begin = 0
+    end = begin + 2
+    non_overlap_substr = []
+    while begin < len(string) and end < len(string):
+        substr = string[begin:end+1]
+        non_overlap_substr.append(substr)
+        begin = end + 1
+        end = begin + 2
+    
+    return non_overlap_substr
 
 
 # ---------------------------------------------------------------------
